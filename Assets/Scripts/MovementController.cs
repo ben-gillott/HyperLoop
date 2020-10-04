@@ -8,26 +8,30 @@ public class MovementController : MonoBehaviour
     [Header("Objects")]
     [Tooltip("Player object")]
     public Transform car; //Player'
+    public GameObject manager;
 
     [Header("Variables")]
-    [Tooltip("Current speed of the car")]
-    public float forwardSpeed = 1f; 
-    public float rotationSpeed = 1f; 
-    [Tooltip("Width of each lane")]
-    public float laneWidth = 3;
-    private int lane = 0;
+    private int lane = 0; //Current lane
+    public float speed = 1f;
+
+    [Header ("Setup")]
+    public float radius = 10;
+    public float circumference = radius*2*Math.PI;
+    public float fwdAmount;
+    public float upDegree;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        //Move left
+        //Controls
         if ((Input.GetKeyDown("left") || Input.GetKeyDown("a")) & lane > -1)
         {
             car.Translate(Vector3.left * laneWidth);
@@ -39,13 +43,11 @@ public class MovementController : MonoBehaviour
             lane += 1;
         }
 
-        car.Rotate(-rotationSpeed*Time.deltaTime, 0.0f, 0.0f, Space.Self);
-        car.Translate(Vector3.forward * Time.deltaTime * forwardSpeed);
 
-        // //Input version
-        // else if((Input.GetButton("Fire1")))
-        // {        
-        //     car.Rotate(-10.0, 0.0f, 0.0f, Space.Self);
-        // }
+
+
+        car.Rotate(-speed*Time.deltaTime, 0.0f, 0.0f, Space.Self);
+        car.Translate(Vector3.forward * Time.deltaTime * speed);
+
     }
 }
