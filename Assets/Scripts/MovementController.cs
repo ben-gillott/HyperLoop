@@ -8,19 +8,11 @@ public class MovementController : MonoBehaviour
     [Header("Objects")]
     [Tooltip("Player object")]
     public Transform car; //Player'
-    public GameObject manager;
 
     [Header("Variables")]
     private int lane = 0; //Current lane
-    public float speed = 1f;
-
-    [Header ("Setup")]
-    public float radius = 10;
-    public float circumference = radius*2*Math.PI;
-    public float fwdAmount;
-    public float upDegree;
-
-
+    public float speed = 10f;
+    public float laneWidth = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,11 +35,12 @@ public class MovementController : MonoBehaviour
             lane += 1;
         }
 
-
-
-
         car.Rotate(-speed*Time.deltaTime, 0.0f, 0.0f, Space.Self);
         car.Translate(Vector3.forward * Time.deltaTime * speed);
 
+        // if(car.position.y > maxHeight){
+        //     maxHeight = car.position.y;
+        //     Debug.Log(maxHeight);
+        // }
     }
 }
