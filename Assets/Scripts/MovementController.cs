@@ -19,6 +19,13 @@ public class MovementController : MonoBehaviour
 
     }
 
+    void OnCollisionEnter(Collision collision){
+        Debug.Log("Detected collision between " + gameObject.name + " and " + collision.collider.name);
+    }
+
+    void OnTriggerEnter(Collider collision){
+        Debug.Log("Detected trigger between " + gameObject.name + " and " + collision);
+    }
 
     // Update is called once per frame
     void Update()
