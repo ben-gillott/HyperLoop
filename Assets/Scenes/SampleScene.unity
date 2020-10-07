@@ -536,7 +536,7 @@ MonoBehaviour:
   centerY: 57.4
   powerupPrefab: {fileID: 5904213874089382220, guid: 99dff65727e6941dd83c6378097a0fe1, type: 3}
   powerupParent: {fileID: 310093146}
-  fPI: 3.1415927
+  trackWidth: 2
 --- !u!4 &310093146
 Transform:
   m_ObjectHideFlags: 0
@@ -1166,9 +1166,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 964652513}
+  centerZ: 0
+  centerY: 57.4
+  radius: 55.4
+  trackWidth: 2
   speed: 15
   speedIncrease: 5
-  laneWidth: 2
 --- !u!114 &964652515
 MonoBehaviour:
   m_ObjectHideFlags: 0

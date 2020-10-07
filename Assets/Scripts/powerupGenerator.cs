@@ -10,9 +10,10 @@ public class powerupGenerator : MonoBehaviour
     public float centerY;
     public GameObject powerupPrefab;
     public Transform powerupParent;
-    public float fPI = (float)Math.PI;
+    public float trackWidth = 3f;
+    private float fPI = (float)Math.PI;
     System.Random rnd = new System.Random();
-    // public List<GameObject> powerups = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,22 +30,19 @@ public class powerupGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //When player passes go - y is less than 1
+        //TODO: When player passes go - y is less than 1
 
         //Remove all children
 
         //Spawn powerups at set intervals
-
-
     }
 
     void PlacePowerup(float t){
-        float x = 2f*(((int)rnd.Next(3)) - 1);
+        float x = trackWidth*(((int)rnd.Next(3)) - 1);
         float z = radius*(float)Math.Cos(t) + centerZ;
         float y = radius*(float)Math.Sin(t) + centerY;
 
         GameObject powerup = Instantiate(powerupPrefab, powerupParent);
         powerup.transform.position = new Vector3(x,y,z);
-        // powerups.add(powerup);
     }
 }
