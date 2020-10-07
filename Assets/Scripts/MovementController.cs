@@ -11,21 +11,9 @@ public class MovementController : MonoBehaviour
 
     [Header("Variables")]
     private int lane = 0; //Current lane
-    public float speed = 10f;
+    public float speed;
+    public float speedIncrease;
     public float laneWidth = 3f;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    void OnCollisionEnter(Collision collision){
-        Debug.Log("Detected collision between " + gameObject.name + " and " + collision.collider.name);
-    }
-
-    void OnTriggerEnter(Collider collision){
-        Debug.Log("Detected trigger between " + gameObject.name + " and " + collision);
-    }
 
     // Update is called once per frame
     void Update()
@@ -44,10 +32,9 @@ public class MovementController : MonoBehaviour
 
         car.Rotate(-speed*Time.deltaTime, 0.0f, 0.0f, Space.Self);
         car.Translate(Vector3.forward * Time.deltaTime * speed);
+    }
 
-        // if(car.position.y > maxHeight){
-        //     maxHeight = car.position.y;
-        //     Debug.Log(maxHeight);
-        // }
+    public void speedUp(){
+        speed += speedIncrease;
     }
 }

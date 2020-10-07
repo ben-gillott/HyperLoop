@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class colliderController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void OnTriggerEnter(Collider collision){
+        if(collision.tag == "Powerup"){
+            //call any powerup animations in pickup and delete
+            collision.GetComponent<powerupController>().pickUp();
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+            gameObject.GetComponent<MovementController>().speedUp();
+        }
+        else if(collision.tag == "Obstacle"){
+            Debug.Log("Hit obstacle");
+        }
+        else{
+            Debug.Log("Detected trigger between " + gameObject.name + " and " + collision.tag);
+        }
+            
     }
 }
