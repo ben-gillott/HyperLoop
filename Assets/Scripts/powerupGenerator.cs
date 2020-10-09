@@ -9,7 +9,8 @@ public class powerupGenerator : MonoBehaviour
     public float centerZ = 0f;
     public float centerY;
     public GameObject powerupPrefab;
-    public Transform powerupParent;
+    public GameObject spikePrefab;
+    public Transform spawnParent;
     public float trackWidth = 3f;
     private float fPI = (float)Math.PI;
     System.Random rnd = new System.Random();
@@ -42,7 +43,11 @@ public class powerupGenerator : MonoBehaviour
         float z = radius*(float)Math.Cos(t) + centerZ;
         float y = radius*(float)Math.Sin(t) + centerY;
 
-        GameObject powerup = Instantiate(powerupPrefab, powerupParent);
+        GameObject powerup = Instantiate(powerupPrefab, spawnParent);
         powerup.transform.position = new Vector3(x,y,z);
+        
+        //Temp
+        GameObject spike = Instantiate(spikePrefab, spawnParent);
+        spike.transform.position = new Vector3(x-2f,y,z);
     }
 }

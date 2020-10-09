@@ -63,5 +63,13 @@ public class MovementController : MonoBehaviour
 
     public void speedUp(){
         speed += speedIncrease;
+        //TODO: Speedup animations and effects
+
+    }
+
+    public void hitSpike(){
+        speed = 0;
+        //TODO: Hitspike animation for player
+        //TODO: Call transition to game over state
     }
 }
