@@ -36,15 +36,12 @@ public class powerupGenerator : MonoBehaviour
     {
         //Spawn powerups at set intervals
         float t = player.GetComponent<MovementController>().getT();
-        
 
         currentModT = (float)Math.Floor(4f*((t/fPI)%2f));
 
-        Debug.Log(currentModT);
-
         if (currentModT != lastModT){
             //Do powerup setup at LastModT - behind the player (or offset by more to give more space)
-
+            PlacePowerups(fPI*lastModT/4f);
 
             lastModT = currentModT;
         }
@@ -54,12 +51,19 @@ public class powerupGenerator : MonoBehaviour
     @Input float t : the location in radians on the circle, non modulated
     */
     void PlacePowerups(float t){
+        //Calculate pos
         float x = trackWidth*(((int)rnd.Next(3)) - 1);
         float z = radius*(float)Math.Cos(t) + centerZ;
         float y = radius*(float)Math.Sin(t) + centerY;
 
         //Remove existing powerups at the area
-
+        Collider[] hits = Physics.OverlapSphere(new Vector3(0f, y, z), 4f);
+        foreach (var collision in hits)
+        {
+            if (collision.tag == "Spike" || collision.tag == "Powerup"){
+                collision.GetComponent<powerupController>().removePowerup();
+            }
+        }
 
         //Add powerup
         GameObject powerup = Instantiate(powerupPrefab, spawnParent);
