@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class colliderController : MonoBehaviour
 {
+    public GameObject levelLoader;
+
     void OnTriggerEnter(Collider collision){
         if(collision.tag == "Powerup"){
             //call any powerup animations in pickup and delete
@@ -13,7 +16,14 @@ public class colliderController : MonoBehaviour
         }
         else if(collision.tag == "Spike"){
             //Stop moving, Animate player death
+
+            //Call car's hit script - stops moving
             gameObject.GetComponent<MovementController>().hitSpike();
+
+            //
+
+            //Tell level loader the player is dead
+            levelLoader.GetComponent<LevelLoader>().playerDied();
         }
         else{
             Debug.Log("Detected trigger between " + gameObject.name + " and " + collision.tag);
