@@ -6,16 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
-
     public float transitionTime = 1f;
-    private bool isPlaying = false; //0 = player is dead and waiting, 1 = playing
-
-    private void Start() {
-        //Reuse transition from menu start and game over restart? or start a new scene
-        //Lets do a new scene, this seems jank
-        isPlaying = false;
-        
-    }
 
     void Update()
     {
@@ -24,7 +15,7 @@ public class LevelLoader : MonoBehaviour
             LoadPlayScene();
         }
     }
-    
+
     public void playerDied(){
         //If player died, switch to game over state
         StartCoroutine(LoadLevel(2));

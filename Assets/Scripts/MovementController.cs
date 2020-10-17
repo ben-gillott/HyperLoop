@@ -61,6 +61,9 @@ public class MovementController : MonoBehaviour
         t += speed * Time.deltaTime * fPI;
     }
 
+    public float getT(){
+        return t;
+    }
     public void speedUp(){
         speed += speedIncrease;
         //TODO: Speedup animations and effects

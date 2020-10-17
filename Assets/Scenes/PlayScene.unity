@@ -380,6 +380,7 @@ MonoBehaviour:
   centerY: 57.4
   powerupPrefab: {fileID: 5904213874089382220, guid: 99dff65727e6941dd83c6378097a0fe1, type: 3}
   spikePrefab: {fileID: 7603436897001575616, guid: f9a0b139fb23646568210bc2824be7ca, type: 3}
+  player: {fileID: 964652512}
   spawnParent: {fileID: 310093146}
   trackWidth: 2
 --- !u!4 &310093146
