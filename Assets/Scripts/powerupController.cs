@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class powerupController : MonoBehaviour
 {
+    // public GameObject sfx;
+    private AudioSource source;
+
+    void Start(){
+        source = GetComponent<AudioSource>();
+    }
+
     public void removePowerup(){
-        Destroy(gameObject);
+        // source.Play();
+
+        // Destroy(gameObject); 
+        //Gets destroyed by generator anyways
+        //Need animation tho
     }
 }

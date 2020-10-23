@@ -52,7 +52,6 @@ public class powerupGenerator : MonoBehaviour
     */
     void PlacePowerups(float t){
         //Calculate pos
-        float x = trackWidth*(((int)rnd.Next(3)) - 1);
         float z = radius*(float)Math.Cos(t) + centerZ;
         float y = radius*(float)Math.Sin(t) + centerY;
 
@@ -65,13 +64,30 @@ public class powerupGenerator : MonoBehaviour
             }
         }
 
-        //Add powerup
-        GameObject powerup = Instantiate(powerupPrefab, spawnParent);
-        powerup.transform.position = new Vector3(x,y,z);
-        
 
-        //Temp - add spike to the left
-        GameObject spike = Instantiate(spikePrefab, spawnParent);
-        spike.transform.position = new Vector3(x-2f,y,z);
+        //Add powerups at t
+        int index1 = rnd.Next(-1,2);
+        int index2 = rnd.Next(-1,2);
+        while (index1 == index2){
+            index2 = rnd.Next(-1,2);
+        }
+        int index3 = ((-1)*index1) - index2;
+        // Debug.Log("Generated: " + index1 + " : " + index2 + " : " + index3);
+
+        //Powerup
+        GameObject powerup = Instantiate(powerupPrefab, spawnParent);
+        powerup.transform.position = new Vector3(trackWidth*index1,y,z);
+
+        //Spikes
+        int numSpikes = rnd.Next(0,3);
+
+        if(numSpikes > 0){
+            GameObject spike = Instantiate(spikePrefab, spawnParent);
+            spike.transform.position = new Vector3(trackWidth*index2,y,z);
+        }
+        if(numSpikes > 1){
+            GameObject spike = Instantiate(spikePrefab, spawnParent);
+            spike.transform.position = new Vector3(trackWidth*index3,y,z);
+        }
     }
 }
