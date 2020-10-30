@@ -6,12 +6,12 @@ using UnityEngine;
 public class colliderController : MonoBehaviour
 {
     public GameObject levelLoader;
-    public GameObject powerupSFX;
-    private AudioSource powerupSource;
+    // public GameObject powerupSFX;
+    // private AudioSource powerupSource;
     
-    void Start(){
-        powerupSource = powerupSFX.GetComponent<AudioSource>();
-    }
+    // void Start(){
+    //     powerupSource = powerupSFX.GetComponent<AudioSource>();
+    // }
 
     void OnTriggerEnter(Collider collision){
         if(collision.tag == "Powerup"){
@@ -19,13 +19,10 @@ public class colliderController : MonoBehaviour
             gameObject.GetComponent<MovementController>().speedUp();
 
             //call any powerup animations + sounds (or put in powerup and make deletes later)
-            powerupSource.Play();
-
-            //Delete powerup - or not, gets deleted by sweep
-            collision.GetComponent<powerupController>().removePowerup();
+            collision.GetComponent<powerupController>().hitPowerup();
         }
         else if(collision.tag == "Spike"){
-            //Stop moving, Animate player death
+            collision.GetComponent<powerupController>().hitPowerup();
 
             //Call car's hit script - stops car moving
             gameObject.GetComponent<MovementController>().hitSpike();
