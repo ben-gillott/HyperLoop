@@ -19,7 +19,7 @@ public class MovementController : MonoBehaviour
     public float speed;
     public float speedIncrease;
     public float xLerpSpeed;
-    
+
     //Privates
     private int lane = 0; //Current lane
     private static float fPI = (float)Math.PI;
@@ -64,10 +64,11 @@ public class MovementController : MonoBehaviour
     public float getT(){
         return t;
     }
-    public void speedUp(){
+
+    public void speedUp(int score){
+        
         speed += speedIncrease;
         //TODO: Speedup animations and effects
-
     }
 
     public void hitSpike(){

@@ -1,23 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class colliderController : MonoBehaviour
 {
     public GameObject levelLoader;
-    // public GameObject powerupSFX;
-    // private AudioSource powerupSource;
-    
-    // void Start(){
-    //     powerupSource = powerupSFX.GetComponent<AudioSource>();
-    // }
+    public int score = 0;
+    public Text scoreText;
 
     void OnTriggerEnter(Collider collision){
         if(collision.tag == "Powerup"){
+            //Update score
+            score += 1;
+            scoreText.text = score.ToString();
             //Speed up
-            gameObject.GetComponent<MovementController>().speedUp();
-
+            gameObject.GetComponent<MovementController>().speedUp(score);
+    
             //call any powerup animations + sounds (or put in powerup and make deletes later)
             collision.GetComponent<powerupController>().hitPowerup();
         }
