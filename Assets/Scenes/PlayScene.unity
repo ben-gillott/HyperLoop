@@ -1237,7 +1237,10 @@ MonoBehaviour:
   radius: 55.4
   trackWidth: 2
   speed: 0.1
-  speedIncrease: 0.008
+  score: 0
+  scoreoffset: 3
+  speedModifier: 0.08
+  speedBase: 3.5
   xLerpSpeed: 12
 --- !u!114 &964652515
 MonoBehaviour:

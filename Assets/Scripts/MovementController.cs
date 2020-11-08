@@ -17,7 +17,10 @@ public class MovementController : MonoBehaviour
     
     [Header("Variables")]
     public float speed;
-    public float speedIncrease;
+    public int score = 0;
+    public int scoreoffset;
+    public float speedModifier;
+    public float speedBase;
     public float xLerpSpeed;
 
     //Privates
@@ -28,9 +31,15 @@ public class MovementController : MonoBehaviour
     private float targetX = 0;
     private float x = 0;
 
+    void Start(){
+
+    }
+
     // Update is called once per frame
     void Update()
     {
+        speedUp(score);
+
         //Controls
         if ((Input.GetKeyDown("left") || Input.GetKeyDown("a")) & lane > -1)
         {
@@ -41,7 +50,6 @@ public class MovementController : MonoBehaviour
             lane += 1;
         }
 
-
         //Position : spherical coords
         targetX = trackWidth*lane; //Set target
         x = Mathf.Lerp(x, targetX, Time.deltaTime * xLerpSpeed);//Lerp x towards target
@@ -49,7 +57,6 @@ public class MovementController : MonoBehaviour
         float z = radius*(float)Math.Cos(t) + centerZ;
         float y = radius*(float)Math.Sin(t) + centerY;
         gameObject.transform.position = new Vector3(x,y,z);
-        
 
         //Direction : tangent to circle
         float rotX = (360f*(-1)*t/(2f*fPI)-90f)%360f;
@@ -65,10 +72,11 @@ public class MovementController : MonoBehaviour
         return t;
     }
 
-    public void speedUp(int score){
-        
-        speed += speedIncrease;
-        //TODO: Speedup animations and effects
+    public void speedUp(int scoreIn){
+        score = scoreIn;
+        speed = speedModifier * (float) Math.Log((double)(score+scoreoffset), (double)speedBase);
+        // Debug.Log("Log:" + Math.Log((double)(score+2), (double)speedBase) + " Speedbase:" + (double)speedBase + " Score:"+(double)(score+2));
+        //TODO: Speedup animations and effects 
     }
 
     public void hitSpike(){
